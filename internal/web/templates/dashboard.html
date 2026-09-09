@@ -1,0 +1,26 @@
+{{define "content"}}
+<div class="page-heading">
+  <div><h1>Repositories</h1><p>Git repositories currently exposed through IMAP.</p></div>
+  <a class="button" href="/repos/new">Add repository</a>
+</div>
+{{if .Repos}}
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Name</th><th>Remote</th><th>Status</th><th>Default branch</th><th>Last fetch</th></tr></thead>
+    <tbody>
+    {{range .Repos}}
+      <tr>
+        <td><a href="/repos/{{.ID}}"><strong>{{.Name}}</strong></a></td>
+        <td class="mono truncate">{{.RemoteURL}}</td>
+        <td><span class="status {{statusClass .Status}}">{{.Status}}</span></td>
+        <td class="mono">{{if .DefaultBranch}}{{.DefaultBranch}}{{else}}—{{end}}</td>
+        <td>{{timefmt .LastFetchAt}}</td>
+      </tr>
+    {{end}}
+    </tbody>
+  </table>
+</div>
+{{else}}
+<section class="empty"><h2>No repositories yet</h2><p>Add a Git remote to create its IMAP account and begin cloning.</p></section>
+{{end}}
+{{end}}

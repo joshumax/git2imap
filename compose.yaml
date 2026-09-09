@@ -1,0 +1,19 @@
+services:
+  git2imap:
+    build: .
+    environment:
+      GIT2IMAP_MASTER_KEY: ${GIT2IMAP_MASTER_KEY:?set GIT2IMAP_MASTER_KEY}
+      GIT2IMAP_ADMIN_PASSWORD: ${GIT2IMAP_ADMIN_PASSWORD:?set GIT2IMAP_ADMIN_PASSWORD}
+      GIT2IMAP_PUBLIC_HOST: ${GIT2IMAP_PUBLIC_HOST:-localhost}
+    ports:
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:1143:1143"
+      - "127.0.0.1:1025:1025"
+    volumes:
+      - git2imap-data:/var/lib/git2imap
+      - git2imap-cache:/var/cache/git2imap
+    restart: unless-stopped
+
+volumes:
+  git2imap-data:
+  git2imap-cache:

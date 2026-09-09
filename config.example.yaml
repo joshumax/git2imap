@@ -1,0 +1,45 @@
+public_host: localhost
+data_dir: ./data
+cache_dir: ./cache
+
+# Prefer environment variables for these values:
+# GIT2IMAP_MASTER_KEY is base64 for exactly 32 random bytes.
+# GIT2IMAP_ADMIN_PASSWORD is the control-panel password.
+master_key: ""
+admin:
+  username: admin
+  password: ""
+
+web:
+  addr: 127.0.0.1:8080
+  tls_addr: ""
+  tls_cert: ""
+  tls_key: ""
+  cookie_name: git2imap_session
+  cookie_secure: false
+
+imap:
+  addr: 127.0.0.1:1143
+  tls_addr: ""
+  tls_cert: ""
+  tls_key: ""
+  allow_insecure_auth: false
+  idle_fetch_interval: 1m
+
+smtp:
+  addr: 127.0.0.1:1025
+  tls_addr: ""
+  tls_cert: ""
+  tls_key: ""
+  allow_insecure_auth: false
+  max_message_bytes: 10485760
+
+git:
+  command: git
+  ssh_command: ssh
+  clone_timeout: 30m
+  fetch_timeout: 1m
+
+log:
+  format: text
+  level: info

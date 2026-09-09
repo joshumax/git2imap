@@ -1,0 +1,9 @@
+.git
+.cache
+bin
+dist
+data
+cache
+certs
+*.db
+*.log

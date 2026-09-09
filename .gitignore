@@ -1,0 +1,11 @@
+/.cache/
+/bin/
+/dist/
+/*.db
+/*.db-shm
+/*.db-wal
+/data/
+/cache/
+/certs/
+*.log
+config.yaml

@@ -1,0 +1,28 @@
+{{define "content"}}
+<div class="page-heading"><div><a class="back" href="/">← Repositories</a><h1>Add repository</h1></div></div>
+<form method="post" action="/repos" class="form-grid" data-auth-form>
+  <input type="hidden" name="csrf" value="{{.CSRF}}">
+  <label>Display name<input name="name" required placeholder="Project name"></label>
+  <label>Repository URL<input name="remote_url" required placeholder="https://github.com/example/project.git"></label>
+  <fieldset class="auth-options">
+    <legend>Authentication</legend>
+    <label><input type="radio" name="auth_type" value="none" checked> No authentication</label>
+    <label><input type="radio" name="auth_type" value="http"> HTTP username and password/token</label>
+    <label><input type="radio" name="auth_type" value="ssh"> SSH private key</label>
+  </fieldset>
+  <fieldset class="credential-fields" data-auth-fields="http" disabled>
+    <legend>HTTP credentials</legend>
+    <div class="two-column">
+      <label>Git username<input name="git_username" autocomplete="off"></label>
+      <label>Password or token<input name="git_password" type="password" autocomplete="new-password"></label>
+    </div>
+    <p class="warning">Plain HTTP sends repository credentials without transport encryption.</p>
+  </fieldset>
+  <fieldset class="credential-fields" data-auth-fields="ssh" disabled>
+    <legend>SSH credentials</legend>
+    <label>SSH private key<textarea name="private_key" rows="8" spellcheck="false"></textarea></label>
+    <label>SSH key passphrase<input name="passphrase" type="password" autocomplete="new-password"></label>
+  </fieldset>
+  <div class="actions"><a class="button secondary" href="/">Cancel</a><button type="submit">Add and clone</button></div>
+</form>
+{{end}}

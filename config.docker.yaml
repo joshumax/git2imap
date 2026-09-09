@@ -1,0 +1,27 @@
+public_host: localhost
+data_dir: /var/lib/git2imap
+cache_dir: /var/cache/git2imap
+master_key: ""
+admin:
+  username: admin
+  password: ""
+web:
+  addr: 0.0.0.0:8080
+  cookie_name: git2imap_session
+  cookie_secure: false
+imap:
+  addr: 0.0.0.0:1143
+  allow_insecure_auth: true
+  idle_fetch_interval: 1m
+smtp:
+  addr: 0.0.0.0:1025
+  allow_insecure_auth: true
+  max_message_bytes: 10485760
+git:
+  command: git
+  ssh_command: ssh
+  clone_timeout: 30m
+  fetch_timeout: 1m
+log:
+  format: json
+  level: info

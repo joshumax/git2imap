@@ -1,0 +1,29 @@
+{{define "layout"}}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{.Title}} · git2imap</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/htmx.min.js" defer></script>
+  <script src="/static/app.js" defer></script>
+</head>
+<body hx-boost="true">
+  <header class="topbar">
+    <a class="brand" href="/">git2imap</a>
+    {{if .CSRF}}
+    <form action="/logout" method="post">
+      <input type="hidden" name="csrf" value="{{.CSRF}}">
+      <button class="quiet" type="submit">Sign out</button>
+    </form>
+    {{end}}
+  </header>
+  <main>
+    {{if .Message}}<div class="notice">{{.Message}}</div>{{end}}
+    {{if .Error}}<div class="notice danger">{{.Error}}</div>{{end}}
+    {{template "content" .}}
+  </main>
+</body>
+</html>
+{{end}}

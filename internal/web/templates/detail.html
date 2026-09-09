@@ -1,0 +1,41 @@
+{{define "content"}}
+<div class="page-heading">
+  <div><a class="back" href="/">← Repositories</a><h1>{{.Repo.Name}}</h1><p class="mono">{{.Repo.RemoteURL}}</p></div>
+  <span class="status {{statusClass .Repo.Status}}">{{.Repo.Status}}</span>
+</div>
+{{if .Repo.StatusMessage}}<pre class="error-detail">{{.Repo.StatusMessage}}</pre>{{end}}
+<section class="detail-grid">
+  <div>
+    <h2>Mail account</h2>
+    <dl>
+      <dt>Email</dt><dd class="mono">{{.Repo.MailUsername}}</dd>
+      <dt>Username</dt><dd class="mono">{{.Repo.MailUsername}}</dd>
+      <dt>Password</dt><dd class="mono">{{if .MailPassword}}{{.MailPassword}}{{else}}••••••••••••••••{{end}}</dd>
+      <dt>Default branch</dt><dd class="mono">{{if .Repo.DefaultBranch}}{{.Repo.DefaultBranch}}{{else}}Pending clone{{end}}</dd>
+    </dl>
+    <h2>Server settings</h2>
+    <dl>
+      <dt>IMAP / IMAPS</dt><dd class="mono">{{.IMAPAddr}}{{if .IMAPTLSAddr}} / {{.IMAPTLSAddr}}{{end}}</dd>
+      <dt>SMTP / SMTPS</dt><dd class="mono">{{.SMTPAddr}}{{if .SMTPTLSAddr}} / {{.SMTPTLSAddr}}{{end}}</dd>
+    </dl>
+  </div>
+  <div>
+    <h2>Actions</h2>
+    <form method="post" action="/repos/{{.Repo.ID}}/refresh"><input type="hidden" name="csrf" value="{{.CSRF}}"><button type="submit">Refresh repository</button></form>
+    <form method="post" action="/repos/{{.Repo.ID}}/reveal" class="stack compact">
+      <input type="hidden" name="csrf" value="{{.CSRF}}">
+      <label>Admin password<input type="password" name="admin_password" required autocomplete="current-password"></label>
+      <button class="secondary" type="submit">Reveal mail password</button>
+    </form>
+    <form method="post" action="/repos/{{.Repo.ID}}/rotate" class="stack compact">
+      <input type="hidden" name="csrf" value="{{.CSRF}}">
+      <label>Admin password<input type="password" name="admin_password" required autocomplete="current-password"></label>
+      <button class="secondary" type="submit">Rotate mail password</button>
+    </form>
+    <form method="post" action="/repos/{{.Repo.ID}}/delete" hx-confirm="Delete this proxy and its cached repository?">
+      <input type="hidden" name="csrf" value="{{.CSRF}}">
+      <button class="danger-button" type="submit">Delete repository</button>
+    </form>
+  </div>
+</section>
+{{end}}
