@@ -4,7 +4,7 @@ Have you ever wanted to view a git repo's entire commit history from your email 
 
 ![I'm sorry Jon...](resources/screenshot-1.png)
 
-git2imap presents hosted Git repositories as read-only IMAP accounts. Each branch is a mailbox and each commit is an email whose body contains the Git patch. I'm using it to make sure the interns don't do anything stupid while I'm flying but too broke to pay for the premium airline internet plans. It also serves as a horrible method of bypassing nation-state firewalls that decided GitHub was too dangerous to be publicly available. Will gi2imap help you? Who knows, but I'm publishing it anyways!
+git2imap presents hosted Git repositories as read-only IMAP accounts. Each branch is a mailbox and each commit is an email whose body contains the Git patch. I'm using it to make sure the interns don't do anything stupid while I'm flying but too broke to pay for the premium airline internet plans. It also serves as a horrible method of bypassing nation-state firewalls that decided GitHub was too dangerous to be publicly available. Will git2imap help you? Who knows, but I'm publishing it anyways!
 
 ## Current capabilities
 
